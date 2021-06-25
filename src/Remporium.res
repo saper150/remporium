@@ -17,7 +17,6 @@ module ReduxDevTools = {
         payload: messagePayload,
     }
 
-
     type reduxDevTools
     @send external send: (reduxDevTools, string, 'state) => () = "send"
     @send external init: (reduxDevTools, 'state) => () = "init"
@@ -32,7 +31,6 @@ module ReduxDevTools = {
         Belt.Option.map(devToolsExtenstion, x => connect(x))
 
     }
-
 }
 
 
@@ -77,7 +75,6 @@ let makeStoreWithDevTools = (~actionName=?, initialState, updateFunction) => {
     }
     }
 
-
     let store = {
         state: initialState,
         updateFunction: devToolsUpdateFunction,
@@ -98,9 +95,7 @@ let makeStoreWithDevTools = (~actionName=?, initialState, updateFunction) => {
         })
     }
 
-
     store
-
 }
 
 
@@ -119,7 +114,6 @@ module type Config = {
 
 module CreateModule = (Config: Config) => {
 
-
     let context = React.createContext(None)
     let provider = React.Context.provider(context)
 
@@ -132,7 +126,6 @@ module CreateModule = (Config: Config) => {
             )
         }
     }
-
 
     let useDispatch = () => {
         let store = React.useContext(context)
@@ -155,7 +148,6 @@ module CreateModule = (Config: Config) => {
         }
 
         let store = Belt.Option.getUnsafe(store)
-
         let (selectedState, setState) = React.useState(() => selectorFunc(store.state))
 
         React.useLayoutEffect0(() => {
@@ -171,7 +163,5 @@ module CreateModule = (Config: Config) => {
         })
 
         selectedState
-
     }
-
 }

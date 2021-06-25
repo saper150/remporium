@@ -18,37 +18,34 @@ let initialState = {
 
 let store = Remporium.makeStore(initialState, updateFunction)
 
-
 module CounterStore = Remporium.CreateModule({
     type action = action
     type state = state
 })
 
 
-
 module Counter = {
-  @react.component
-  let make = () => {
-      let dispatch = CounterStore.useDispatch()
-      let count = CounterStore.useSelector(state => state.count)
+    @react.component
+    let make = () => {
+        let dispatch = CounterStore.useDispatch()
+        let count = CounterStore.useSelector(state => state.count)
 
-      <div>
-        <button onClick=(_ => dispatch(Increment))>
-            {"Increment"->React.string}
-        </button>
-        <button onClick=(_ => dispatch(Decrement))>
-            {"Decrement"->React.string}
-        </button>
-        <div>{count->React.int}</div>
-      </div>
+        <div>
+            <button onClick=(_ => dispatch(Increment))>
+                {"Increment"->React.string}
+            </button>
+            <button onClick=(_ => dispatch(Decrement))>
+                {"Decrement"->React.string}
+            </button>
+            <div>{count->React.int}</div>
+        </div>
 
-  }
-
+    }
 }
 
 ReactDOM.render(
-  <CounterStore.Provider store=store>
-    <Counter />
-  </CounterStore.Provider>,
-  ReactDOM.querySelector("#app") -> Belt.Option.getExn,
+    <CounterStore.Provider store=store>
+        <Counter />
+    </CounterStore.Provider>,
+    ReactDOM.querySelector("#app") -> Belt.Option.getExn,
 )
