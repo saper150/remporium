@@ -1,0 +1,31 @@
+{
+  "name": "remporium",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "retest --with-dom ./test/tests.bs.js",
+    "start": "rescript build -w -with-deps",
+    "buildExamples": "esbuild examples/counter/Counter.bs.js examples/todo/ToDo.bs.js --sourcemap --outdir=examples/dist/ --bundle --watch"
+  },
+  "keywords": [
+    "rescript",
+    "redux",
+    "react",
+    "reactjs",
+    "state management"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@rescript/react": "^0.10.3",
+    "rescript": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@rescript/react": "^0.10.3",
+    "esbuild": "^0.12.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rescript": "*",
+    "rescript-test": "^2.0.7"
+  }
+}

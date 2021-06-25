@@ -1,0 +1,35 @@
+{
+  "name": "remporium",
+  "version": "0.0.1",
+  "sources": [
+    {
+      "dir" : "src",
+      "subdirs" : true
+    },
+    {
+      "dir" : "examples",
+      "subdirs" : true,
+      "type": "dev"
+    },
+    {
+      "dir" : "test",
+      "subdirs" : true,
+      "type": "dev"
+    }
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "reason": { "react-jsx": 3 },
+  "bs-dependencies": [
+    "@rescript/react"
+  ],
+  "bs-dev-dependencies": [
+    "rescript-test"
+  ],
+  "warnings": {
+    "error" : "+101"
+  }
+}
