@@ -13,6 +13,10 @@
     "reactjs",
     "state management"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saper150/remporium"
+  },
   "author": "",
   "license": "MIT",
   "peerDependencies": {
