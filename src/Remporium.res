@@ -115,19 +115,17 @@ module type Config = {
 module CreateModule = (Config: Config) => {
 
     let context = React.createContext(None)
-    let provider = React.Context.provider(context)
 
     module Provider = {
-        @react.component
-        let make = (~store: store<Config.state, Config.action>, ~children: React.element) => {
-            React.createElement(
-                provider,
-                { "value": Some(store), "children": children }
-            )
+        module InnerProvider = {
+            let make = React.Context.provider(context)
         }
+
+        @react.component
+        let make = (~store, ~children) => <InnerProvider value=Some(store)> {children} </InnerProvider>
     }
 
-    let useDispatch = () => {
+    let useDispatch: (unit, Config.action) => unit = () => {
         let store = React.useContext(context)
         
         switch store {
@@ -139,7 +137,7 @@ module CreateModule = (Config: Config) => {
         }
     }
 
-    let useSelector = (selectorFunc) => {
+    let useSelector: (Config.state => 'a) => 'a = selectorFunc => {
 
         let store = React.useContext(context)
 
